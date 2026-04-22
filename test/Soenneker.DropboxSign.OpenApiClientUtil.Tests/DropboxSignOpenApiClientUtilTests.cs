@@ -1,20 +1,19 @@
 using Soenneker.DropboxSign.OpenApiClientUtil.Abstract;
-using Soenneker.Tests.FixturedUnit;
-using Xunit;
+using Soenneker.Tests.HostedUnit;
 
 namespace Soenneker.DropboxSign.OpenApiClientUtil.Tests;
 
-[Collection("Collection")]
-public sealed class DropboxSignOpenApiClientUtilTests : FixturedUnitTest
+[ClassDataSource<Host>(Shared = SharedType.PerTestSession)]
+public sealed class DropboxSignOpenApiClientUtilTests : HostedUnitTest
 {
     private readonly IDropboxSignOpenApiClientUtil _openapiclientutil;
 
-    public DropboxSignOpenApiClientUtilTests(Fixture fixture, ITestOutputHelper output) : base(fixture, output)
+    public DropboxSignOpenApiClientUtilTests(Host host) : base(host)
     {
         _openapiclientutil = Resolve<IDropboxSignOpenApiClientUtil>(true);
     }
 
-    [Fact]
+    [Test]
     public void Default()
     {
 
